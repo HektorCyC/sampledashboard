@@ -13,14 +13,13 @@ export interface Config {
   providedIn: "root"
 })
 export class NetworkService {
-  constructor(private http: HttpClient, private db: AngularFirestore) {}
+  constructor(private http: HttpClient, private db: AngularFirestore) { }
 
-  getRequest(url: string): Observable<any> {
-    return this.http.get(url);
+  getRequest(url: string) {
+     return this.http.get(url);
   }
 
   postRequest(url: string, body: Config) {
-
     return this.http.post(url, body).subscribe(
       data => {
       },

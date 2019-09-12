@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-inline";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular";
 import { NetworkService } from "src/app/core/network.service";
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component({
   selector: "app-addpost",
@@ -10,20 +11,29 @@ import { NetworkService } from "src/app/core/network.service";
   styleUrls: ["./addpost.component.scss"]
 })
 export class AddpostComponent implements OnInit {
-  public Editor = ClassicEditor;
-  constructor(public network: NetworkService) {}
 
-  ngOnInit() {}
+  postBody = "<p><h1>¡Hola mundo!</h1></p>";
+  title = "¡Hola mundo!";
+  user = "John doe";
+  public Editor = ClassicEditor;
+  constructor(public network: NetworkService, public auth: AuthService) { }
+  ngOnInit() {
+    this.auth.user$.subscribe(val => this.title = val.displayName);
+  }
+
   onKey({ editor }: ChangeEvent) {
     const data = editor.getData();
-    console.log(data);
+    this.postBody = data;
+  }
+  onTitle(event: any) {
+    this.title = event.target.value;
   }
   saveData() {
     event.preventDefault();
     this.network.postRequest("https://tratodemo.herokuapp.com/api", {
-      user: "Fantas",
-      postBody: "BODIX",
-      title: "Titulo"
+      user: this.user,
+      postBody: this.postBody,
+      title: this.title
     });
   }
 }
