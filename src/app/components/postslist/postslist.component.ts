@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NetworkService } from 'src/app/core/network.service';
 import { MatTableDataSource } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface PostBody {
-    documents: Array<string>;
+  documents: Array<string>;
 }
 
 
@@ -15,7 +16,7 @@ export interface PostBody {
 
 export class PostslistComponent implements OnInit {
   dataSource = new MatTableDataSource();
-  constructor(private network: NetworkService) {
+  constructor(private network: NetworkService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -23,5 +24,14 @@ export class PostslistComponent implements OnInit {
       this.dataSource.data = res.documents;
     });
   }
-  displayedColumns: string[] = ["nombre", "titulo"];
+  displayedColumns: string[] = ["nombre", "titulo", "action"];
+
+
+  openModal(id: number) {
+    // const dialogRef = this.dialog.open()
+  }
+
+  deletePost(id: number){
+    this.network.deletePost(id).subscribe();
+  }
 }

@@ -1,16 +1,19 @@
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="nombre">
-      <mat-header-cell *matHeaderCellDef> Autor </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.user }} </mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="titulo">
-      <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.title }} </mat-cell>
-    </ng-container>
-  
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </mat-table>
-  
+  <ng-container matColumnDef="nombre">
+    <mat-header-cell *matHeaderCellDef> Autor </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.user }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="titulo">
+    <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.title }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+    <mat-cell *matCellDef="let element"> <button mat-stroked-button color="primary" (click)="openModal(element._id)">Ver nota</button> <button mat-stroked-button color="warn" (click)="deletePost(element._id)">Borrar</button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
