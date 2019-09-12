@@ -21,7 +21,6 @@ export class PostslistComponent implements OnInit {
   ngOnInit() {
     this.network.getRequest('https://tratodemo.herokuapp.com/api').subscribe((res: PostBody) => {
       this.dataSource.data = res.documents;
-      console.log(this.dataSource.data)
     });
   }
   displayedColumns: string[] = ["nombre", "titulo"];
