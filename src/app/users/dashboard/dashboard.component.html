@@ -1,0 +1,71 @@
+<div class="login-card">
+  <div class="row content">
+    <div class="col-4 login-welcome">
+      <div *ngIf="auth.user$ | async; then authenticated"></div>
+      <ng-template #authenticated>
+        <div *ngIf="auth.user$ | async as user">
+          <h3>Bienvenido, {{ user.displayName }}!</h3>
+          <div class="login-card__animation">
+            <div *ngIf="user.photoURL; then avatar; else noavatar"></div>
+            <ng-template #avatar>
+              <img class="avatar" [src]="user.photoURL" />
+            </ng-template>
+            <ng-template #noavatar>
+              <img class="avatar" src="https://directemployers.org/wp-content/uploads/2018/08/avatar-JohnDoe.jpg" />
+            </ng-template>
+          </div>
+          <button (click)="auth.signOut()" mat-raised-button color="warn">
+            Cerrar sesión
+          </button>
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-8 login-form">
+      <mat-tab-group>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <i class="far fa-chart-bar"></i>
+          </ng-template>
+          <div class="mt-4">
+            <h3>Estadisticas <i class="far fa-question-circle" 
+              matTooltip="Numero de post por usuario"
+                aria-label="Button that displays a tooltip when focused or hovered over"></i></h3>
+            <app-charts></app-charts>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <i class="fas fa-edit"></i>
+          </ng-template>
+          <div class="mt-4">
+            <h3>Agregar post <i class="far fa-question-circle" 
+              matTooltip="Agregar post al servicio de backend propio"
+                aria-label="Button that displays a tooltip when focused or hovered over"></i></h3>
+            <app-addpost></app-addpost>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <i class="fas fa-users-cog"></i>
+          </ng-template>
+          <div class="mt-4">
+            <h3>Usuarios <i class="far fa-question-circle" 
+              matTooltip="Lista de usuarios en el servicio Firebase"
+                aria-label="Button that displays a tooltip when focused or hovered over"></i></h3>
+            <app-userlist></app-userlist>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <i class="fas fa-list"></i>
+          </ng-template>
+          <div class="mt-4">
+            <h3>Lista de posts <i class="far fa-question-circle" matTooltip="Lista de registros en backend propio"
+                aria-label="Button that displays a tooltip when focused or hovered over"></i></h3>
+            <app-postslist></app-postslist>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

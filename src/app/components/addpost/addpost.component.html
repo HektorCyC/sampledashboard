@@ -1,0 +1,19 @@
+<form class="post-form">
+  <mat-form-field class="full-width-field">
+    <input
+      matInput
+      placeholder="Titulo de la nota"
+      value="¡Hola mundo!"
+      (keyup)="onKey($event)"
+    />
+  </mat-form-field>
+  <ckeditor
+    (change)="onKey($event)"
+    [editor]="Editor"
+    data="<p><b>¡Click aqui para modificar!</b></p>"
+  ></ckeditor>
+
+  <button mat-stroked-button color="primary" (click)="saveData()">
+    Guardar
+  </button>
+</form>
