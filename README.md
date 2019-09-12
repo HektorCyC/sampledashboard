@@ -9,6 +9,7 @@
  - [x] [Firebase](https://firebase.io) Firestore hosting ready✔️
  - [x] Propietary [Backend Service](https://github.com/HektorCyC/SimpleBackend) ✔️
  - [x] Angular Observables✔️
+ - [x] Angular Guards ✔️
  - [x] Angular Services✔️
  - [x] Modular design✔️
 
