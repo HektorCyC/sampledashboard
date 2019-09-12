@@ -18,7 +18,7 @@ export class AddpostComponent implements OnInit {
   public Editor = ClassicEditor;
   constructor(public network: NetworkService, public auth: AuthService) { }
   ngOnInit() {
-    this.auth.user$.subscribe(val => this.title = val.displayName);
+    this.auth.user$.subscribe(val => this.user = val.displayName);
   }
 
   onKey({ editor }: ChangeEvent) {
