@@ -1,6 +1,6 @@
 <div class="login-card">
   <div class="row content">
-    <div class="col-4 login-welcome">
+    <div class="col-12 col-md-4 login-welcome">
       <div *ngIf="auth.user$ | async; then authenticated"></div>
       <ng-template #authenticated>
         <div *ngIf="auth.user$ | async as user">
@@ -20,7 +20,7 @@
         </div>
       </ng-template>
     </div>
-    <div class="col-8 login-form">
+    <div class="col-12 col-md-8 login-form">
       <mat-tab-group>
         <mat-tab>
           <ng-template mat-tab-label>
